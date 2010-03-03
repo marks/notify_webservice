@@ -1,4 +1,4 @@
 sinatra
-rest_client
+rest-client
 excelsior
 haml
