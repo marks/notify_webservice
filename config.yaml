@@ -1,0 +1,9 @@
+---
+tropo:
+  session:
+    url: http://api.tropo.com/1.0/sessions
+    voice: c73f5b73da854a41b0e7e67598b09ff86e9bfcae05afb320193fc29776ea555f0902df6e2411ad83f969e6d9
+    text: e360244f4526cf439418f7bc71500f09c6c1e688c65d08a38866f913d36991432ce4d7f609d94be7c82f6acd
+postage:
+  url: http://api.postageapp.com/v.1.0
+  key: h39UnPkZaFXycrJ7mElpMxvpiDSongYO
