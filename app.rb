@@ -36,7 +36,6 @@ __END__
   - examples.each do |ex|
     %li
       %a(href=ex) #{ex}
-      %a{:href => ex}= ex
 %hr
 %h3 Multimodal:
 %p
