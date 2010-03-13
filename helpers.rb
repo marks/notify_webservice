@@ -2,7 +2,7 @@ def new_session(params)
   case params[:network].downcase
   when 'email'
     new_postage_session(params)
-  else
+  else # We use Tropo for everything other than email; just add more 'when' statements if you want to add more services (like iPhone Push, etc.)
     new_tropo_session(params)    
   end
 end
@@ -11,13 +11,14 @@ def new_tropo_session(call_options)
   if call_options[:network].downcase == 'voice'
     call_options['token'] = CONFIG['tropo']['session']['voice']
     call_options['channel'] = 'voice'
-  else # a text channel (incls SMS, IM, etc.)
+  else # a text channel (includes SMS, IM, etc.) if not a voice session
     call_options['token'] = CONFIG['tropo']['session']['text']
     call_options['channel'] = 'text'
   end
   params_string = "?action=create"
   call_options.each {|key,value| params_string << "&"+key.to_s+"="+escape(value.to_s)}
-  response = RestClient.get(CONFIG['tropo']['session']['url'] + params_string)
+  begin; response = RestClient.get(CONFIG['tropo']['session']['url'] + params_string)
+  rescue; return "false"; end;
   return REXML::Document.new(response).root.get_text("success").to_s # => true or false
 end
 
